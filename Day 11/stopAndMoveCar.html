@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <img id="stopCar" src="./car.png" alt="Car Image">
+    <img id="movingCar" src="./Car.gif" alt="Car Gifs" style="display: none;">
+
+    <button onclick="moveCar()">Move Car</button>
+    <button onclick="stopCar()">Stop Car</button>
+
+    <script>
+        let stopCarImg = document.getElementById("stopCar");
+        let movingCarImg = document.getElementById("movingCar");
+
+        function moveCar() {
+            stopCarImg.style.display = "none";
+            movingCarImg.style.display = "block";
+        }
+
+        function stopCar() {
+            movingCarImg.style.display = "none";
+            stopCarImg.style.display = "block";
+        }
+    </script>
+    
+</body>
+</html>
