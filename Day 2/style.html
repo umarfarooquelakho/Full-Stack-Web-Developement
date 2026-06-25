@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me</title>
+    <!-- internal CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            margin: 0;
+            padding: 30px;
+            color: #222;
+        }
+
+        .me-list-container {
+            max-width: 520px;
+            margin: 0 auto;
+            padding: 24px;
+            background-color: #1f1f2b;
+            border: 2px solid #333;
+            border-radius: 18px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+        }
+
+        .me-list-container h1 {
+            margin: 0 0 18px;
+            color: #f9d070;
+            font-size: 1.9rem;
+            text-align: center;
+        }
+
+        .me-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .me-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 18px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #2f3045, #232338);
+            border: 1px solid #3a3b51;
+            color: #eee;
+        }
+
+        .me-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .me-list li span.label {
+            font-weight: 700;
+            color: #ffd473;
+            margin-right: 12px;
+        }
+    </style>
+    <!-- External File --> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="me-list-container">
+        <h1>About Me</h1>
+        <ul class="me-list">
+            <li><span class="label">Name:</span> Umar Farooque</li>
+            <li><span class="label">Role:</span> Web Developer</li>
+            <li><span class="label">Skills:</span> HTML, CSS, JavaScript</li>
+            <li><span class="label">Hobby:</span> Learning new layouts</li>
+        </ul>
+    </div>
+</body>
+</html>

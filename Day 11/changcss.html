@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="msg"></div>
+    <div class="container">
+        <p id="para">Hey I'm Paragraph</p>
+        <h3>Let's Learn</h3>
+    </div>
+    <div id="para10"></div>
+
+    <button onclick="changeColor()">Change Color</button>
+    <button onclick="generate()">Create Heading</button>
+    <button onclick="deleteHead()">Delete Heading</button>
+    <button onclick="generatepara()">Generate Paragraphs</button>
+    <button onclick="delPara()">Delete Paragraphs</button>
+
+    <script>
+        let para = document.getElementById("para");
+        let contain = document.getElementsByClassName("container");
+        function changeColor() {
+            para.style = "color : brown";
+            // para.style.backgroundColor="black";
+            contain[0].style.backgroundColor="gray"
+        }
+        let message = document.getElementById("msg");
+        let newMessage = document.createElement("h1");
+        newMessage.setAttribute("id","heading");
+        function generate() {
+            newMessage.innerText = "Hey I'm a New Message";
+            message.appendChild(newMessage);
+        }
+        function deleteHead() {
+            let del = document.getElementById("heading");
+            del.remove();
+        }
+        function generatepara() {
+            let paraten = document.getElementById("para10");
+            for(let i=0; i<10; i++) {
+                let newPara = document.createElement("p");
+                newPara.innerText = "This is paragraph " + (i+1);
+                para10.appendChild(newPara);
+            }
+        }
+
+        function delPara() {
+            let delpara = document.getElementById("para10");
+            while(delpara.firstChild) {
+                delpara.removeChild(delpara.firstChild);
+            }
+        }
+    </script>
+</body>
+</html>

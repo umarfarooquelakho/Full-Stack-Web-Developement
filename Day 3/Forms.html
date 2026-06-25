@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML FORMS</title>
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0f4c81 0%, #6ac1e0 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #1f2937;
+        }
+
+        .form-wrapper {
+            width: min(520px, 92vw);
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 32px 32px 24px;
+            box-shadow: 0 24px 80px rgba(15, 76, 129, 0.18);
+        }
+
+        .form-head {
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        .form-head h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: #0f4c81;
+        }
+
+        .form-head p {
+            margin: 10px auto 0;
+            color: #5b6b7d;
+            line-height: 1.5;
+            max-width: 420px;
+        }
+
+        .form-group {
+            display: grid;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        label {
+            font-weight: 700;
+            color: #2b3a50;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 90%;
+            padding: 14px 10px;
+            border: 1px solid #d2dce6;
+            border-radius: 16px;
+            font-size: 0.98rem;
+            color: #1f2937;
+            background: #f8fafc;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #4f8ff7;
+            box-shadow: 0 0 0 5px rgba(79, 143, 247, 0.12);
+            background: #ffffff;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            border-radius: 18px;
+            padding: 14px 18px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            background: linear-gradient(135deg, #1170f6 0%, #16c0ff 100%);
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 8px;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 32px rgba(17, 112, 246, 0.24);
+        }
+
+        small {
+            display: block;
+            margin-top: 14px;
+            text-align: center;
+            color: #6b7485;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 520px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-wrapper">
+        <div class="form-head">
+            <h1>Create your account</h1>
+            <p>Sign up now to join the learning portal and get updates on classes, resources, and support.</p>
+        </div>
+
+        <form>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="user">Full Name</label>
+                    <input type="text" id="user" placeholder="Enter your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Phone No</label>
+                    <input type="tel" id="phone" placeholder="+92 3XX XXXXXXX">
+                </div>
+                <div class="form-group">
+                    <label for="pass">Password</label>
+                    <input type="password" id="pass" placeholder="Create a password">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">Subject</label>
+                <select id="subject">
+                    <option value="choose">Choose Subject</option>
+                    <option value="maths">Mathematics</option>
+                    <option value="chem">Chemistry</option>
+                    <option value="physics">Physics</option>
+                    <option value="Bio">Biology</option>
+                    <option value="Eng">English</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address</label>
+                <textarea id="address" placeholder="Enter your address"></textarea>
+            </div>
+
+            <button type="submit">Create Account</button>
+            <small>By signing up, you agree to our terms and privacy policy.</small>
+        </form>
+    </div>
+
+</body>
+</html>
