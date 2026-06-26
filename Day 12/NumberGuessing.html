@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        :root {
+            --bg-start: #0f2027;
+            --bg-mid: #203a43;
+            --bg-end: #2c5364;
+            --card: rgba(255,255,255,0.08);
+            --card-border: rgba(255,255,255,0.18);
+            --text: #f4f7f9;
+            --accent: #4fd1c5;
+            --accent-dark: #31a0a5;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top left, rgba(79,209,197,0.18), transparent 25%),
+                        radial-gradient(circle at bottom right, rgba(255,255,255,0.08), transparent 20%),
+                        linear-gradient(135deg, var(--bg-start), var(--bg-mid), var(--bg-end));
+            overflow: hidden;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.08), transparent 60%);
+            opacity: 0.6;
+            animation: shimmer 12s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes shimmer {
+            from { transform: translateX(-10%); }
+            to { transform: translateX(10%); }
+        }
+        .game-card {
+            width: min(420px, calc(100vw - 40px));
+            padding: 32px;
+            border-radius: 24px;
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 20px 80px rgba(0,0,0,0.25);
+            backdrop-filter: blur(18px);
+            text-align: center;
+        }
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2rem, 3vw, 2.6rem);
+            letter-spacing: 0.04em;
+        }
+        p {
+            margin: 0 0 16px;
+            font-size: 1rem;
+            color: rgba(244,247,249,0.9);
+        }
+        input[type="number"] {
+            width: 100%;
+            max-width: 140px;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.08);
+            color: var(--text);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+        input[type="number"]:focus {
+            border-color: var(--accent);
+            transform: translateY(-1px);
+        }
+        button {
+            margin-top: 16px;
+            padding: 12px 24px;
+            border-radius: 999px;
+            border: none;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: #0b1416;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 20px 40px rgba(15,32,39,0.25);
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 24px 50px rgba(15,32,39,0.35);
+        }
+        #result {
+            margin-top: 24px;
+            min-height: 1.4em;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="game-card">
+        <h1>Number Guessing Game</h1>
+        <p>Guess a number between 1 and 100:</p>
+        <input type="number" id="guessInput" min="1" max="100">
+        <button id="guessButton">Guess</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        let randomNumber = Math.floor(Math.random() * 100) + 1;
+        const guessButton = document.getElementById('guessButton');
+        const guessInput = document.getElementById('guessInput');
+        const result = document.getElementById('result');
+
+        guessButton.addEventListener('click', checkGuess);
+
+        function checkGuess() {
+            const userGuess = parseInt(guessInput.value, 10);
+            if (!userGuess || userGuess < 1 || userGuess > 100) {
+                result.textContent = "Please enter a valid number between 1 and 100.";
+                return;
+            }
+
+            if (userGuess === randomNumber) {
+                result.textContent = "Congratulations! You guessed the number.";
+                guessButton.textContent = "Play Again";
+                guessButton.removeEventListener('click', checkGuess);
+                guessButton.addEventListener('click', resetGame, { once: true });
+            } else if (userGuess < randomNumber) {
+                result.textContent = "Too low. Try again!";
+            } else {
+                result.textContent = "Too high. Try again!";
+            }
+        }
+
+        function resetGame() {
+            randomNumber = Math.floor(Math.random() * 100) + 1;
+            guessInput.value = "";
+            result.textContent = "";
+            guessButton.textContent = "Guess";
+            guessButton.addEventListener('click', checkGuess);
+        }
+    </script>
+
+</body>
+</html>

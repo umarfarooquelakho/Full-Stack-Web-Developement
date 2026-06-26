@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Event Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .control { margin: 10px 0; }
+        #log { margin-top: 20px; border: 1px solid #ccc; padding: 10px; max-height: 240px; overflow-y: auto; background: #f9f9f9; }
+        #dragSource, #dropTarget { width: 160px; padding: 10px; border: 2px dashed #666; margin: 10px 0; text-align: center; }
+        #dropTarget { border-style: solid; background: #fff; }
+    </style>
+</head>
+<body id="body">
+    <h1>JavaScript Event Demo</h1>
+    <p class="para">Click, hover, type, or interact with the controls below to see common JavaScript events.</p>
+
+    <div class="control">
+        <button id="clickBtn">Click Me</button>
+        <button id="dblClickBtn">Double Click Me</button>
+        <button id="contextBtn">Right Click Me</button>
+    </div>
+
+    <div class="control">
+        <label for="textInput">Keyboard / input events:</label><br>
+        <input id="textInput" type="text" placeholder="Type here" />
+    </div>
+
+    <div class="control">
+        <label for="focusInput">Focus / blur events:</label><br>
+        <input id="focusInput" type="text" placeholder="Focus and blur here" />
+    </div>
+
+    <div class="control">
+        <label for="selectBox">Change event:</label><br>
+        <select id="selectBox">
+            <option value="">Choose option</option>
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+        </select>
+    </div>
+
+    <div class="control">
+        <form id="sampleForm">
+            <label for="name">Submit event:</label><br>
+            <input id="name" name="name" type="text" placeholder="Enter name" />
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <div class="control">
+        <div id="dragSource" draggable="true">Drag me</div>
+        <div id="dropTarget">Drop here</div>
+    </div>
+
+    <div id="log"></div>
+
+    <script>
+        function logEvent(message) {
+            const log = document.getElementById('log');
+            const entry = document.createElement('div');
+            entry.textContent = `${new Date().toLocaleTimeString()} - ${message}`;
+            log.prepend(entry);
+        }
+
+        window.addEventListener('load', function() {
+            logEvent('load event fired');
+        });
+
+        window.addEventListener('resize', function() {
+            logEvent('resize event fired');
+        });
+
+        window.addEventListener('scroll', function() {
+            logEvent('scroll event fired');
+        });
+
+        const para = document.querySelector('.para');
+        para.addEventListener('click', function() {
+            logEvent('paragraph click event');
+        });
+        para.addEventListener('dblclick', function() {
+            logEvent('paragraph double-click event');
+        });
+        para.addEventListener('mouseover', function() {
+            logEvent('paragraph mouseover event');
+        });
+        para.addEventListener('mouseout', function() {
+            logEvent('paragraph mouseout event');
+        });
+
+        document.getElementById('clickBtn').addEventListener('click', function() {
+            alert('Click event on button');
+        });
+
+        document.getElementById('dblClickBtn').addEventListener('dblclick', function() {
+            alert('Double click event on button');
+        });
+
+        document.getElementById('contextBtn').addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+            logEvent('contextmenu event on button');
+        });
+
+        const textInput = document.getElementById('textInput');
+        textInput.addEventListener('keydown', function(event) {
+            logEvent(`keydown event: ${event.key}`);
+        });
+        textInput.addEventListener('keyup', function(event) {
+            logEvent(`keyup event: ${event.key}`);
+        });
+        textInput.addEventListener('input', function() {
+            logEvent('input event on text field');
+        });
+
+        const focusInput = document.getElementById('focusInput');
+        focusInput.addEventListener('focus', function() {
+            logEvent('focus event');
+        });
+        focusInput.addEventListener('blur', function() {
+            logEvent('blur event');
+        });
+
+        document.getElementById('selectBox').addEventListener('change', function(event) {
+            logEvent(`change event: ${event.target.value}`);
+        });
+
+        const form = document.getElementById('sampleForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            logEvent('submit event');
+        });
+
+        const dragSource = document.getElementById('dragSource');
+        const dropTarget = document.getElementById('dropTarget');
+
+        dragSource.addEventListener('dragstart', function() {
+            logEvent('dragstart event');
+        });
+
+        dropTarget.addEventListener('dragover', function(event) {
+            event.preventDefault();
+            logEvent('dragover event');
+        });
+
+        dropTarget.addEventListener('drop', function(event) {
+            event.preventDefault();
+            logEvent('drop event');
+        });
+    </script>
+</body>
+</html>

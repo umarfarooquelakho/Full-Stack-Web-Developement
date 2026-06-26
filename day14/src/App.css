@@ -1,0 +1,46 @@
+.heading{
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 16px;
+}
+.Skills {
+    display: block;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: -300px;
+    
+}
+.skill {
+    margin-left: 30px;
+    border: 1px solid black;
+    border-radius: 16px;
+    width : 30vw;
+    padding: 10px;
+    list-style: none;
+    margin-top: 10px;
+    margin-left: 33vw;
+    padding-left: 20px;
+}
+.headingskill {
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 33vw;
+    height : 43vh;
+    align-items: center;
+    font-size: 48px;
+}
+.profile {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 300px;
+    height: 310px;
+    margin-left: 72vw;
+    margin-top: -300px;
+}
+.skill:hover , .headingskill:hover , .heading:hover {
+    background-color: black;
+    color : white;
+}
