@@ -21,8 +21,16 @@ export default function App() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Submitted with Name:", nameRef.current.value, "and Email:", emailRef.current.value );
+    console.log(
+      "Form Submitted with Name:",
+      nameRef.current.value,
+      "and Email:",
+      emailRef.current.value,
+    );
   };
+
+  const [elapsedTime, setElapsedTime] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -31,6 +39,26 @@ export default function App() {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (!isRunning) return;
+
+    const interval = setInterval(() => {
+      setElapsedTime((prevTime) => prevTime + 10);
+    }, 10);
+
+    return () => clearInterval(interval);
+  }, [isRunning]);
+
+  const formatTime = (milliseconds) => {
+    const mins = String(Math.floor(milliseconds / 60000)).padStart(2, "0");
+    const secs = String(Math.floor((milliseconds % 60000) / 1000)).padStart(
+      2,
+      "0",
+    );
+    const milisecs = String(milliseconds % 1000).padStart(3, "0");
+    return `${mins}:${secs}:${milisecs}`;
+  };
 
   function Increment() {
     setCount(count + 1);
@@ -59,6 +87,38 @@ export default function App() {
         </button>
       </div>
 
+      <div
+        className={styles.stopwatch}
+        style={{
+          marginTop: "30px",
+          padding: "20px",
+          border: "1px solid #ddd",
+          borderRadius: "8px",
+        }}
+      >
+        <h2>Stop Watch</h2>
+        <p style={{ fontSize: "1.5rem", margin: "10px 0" }}>
+          {formatTime(elapsedTime)}
+        </p>
+        <div>
+          <button onClick={() => setIsRunning(true)} style={{ margin: "5px" }}>
+            Start
+          </button>
+          <button onClick={() => setIsRunning(false)} style={{ margin: "5px" }}>
+            Stop
+          </button>
+          <button
+            onClick={() => {
+              setIsRunning(false);
+              setElapsedTime(0);
+            }}
+            style={{ margin: "5px" }}
+          >
+            Reset
+          </button>
+        </div>
+      </div>
+
       <form className={styles.form}>
         <div className="name">
           <label>
@@ -78,7 +138,13 @@ export default function App() {
         <button type="submit" onClick={handleSubmit}>
           Submit
         </button>
-        <button type="reset" onClick={() => { setName(""); setEmail(""); }}>
+        <button
+          type="reset"
+          onClick={() => {
+            setName("");
+            setEmail("");
+          }}
+        >
           Reset
         </button>
       </form>
